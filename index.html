@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Sistema</title>
+</head>
+<body>
+    <h1>Informações do Sistema</h1>
+    <div id="system-info">
+        <pre>Esperando dados...</pre>
+    </div>
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect('http://127.0.0.1:5000');
+
+        socket.on('system_info', function(data) {
+            const systemData = JSON.parse(data);
+            console.log(systemData);
+            document.getElementById('system-info').innerHTML = '<pre>' + JSON.stringify(systemData, null, 2) + '</pre>';
+        });
+    </script>
+</body>
+</html>
